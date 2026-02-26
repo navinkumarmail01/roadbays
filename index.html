@@ -1,0 +1,1184 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Roadbays — Premium Roadside Assistance</title>
+  <meta name="description" content="Roadbays provides quick roadside assistance: towing, battery jumpstart, tyre puncture, fuel delivery (subject to safety/regulatory limits), and on-spot repair. Helpline: 02269719432 / 9523633918. WhatsApp: 9523633918. Email: support@roadbays.in. Activate your card online." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bgA:#f6fbff;
+      --bgB:#ffffff;
+      --ink:#07111f;
+      --muted: rgba(7,17,31,.70);
+      --stroke: rgba(7,17,31,.10);
+      --glass: rgba(255,255,255,.72);
+
+      --g:#21c45d;
+      --b:#3b82f6;
+      --p:#a855f7;
+      --r:#fb7185;
+      --a:#f59e0b;
+      --w:#25D366; /* WhatsApp */
+
+      --shadow: 0 18px 70px rgba(7,17,31,.12);
+      --shadow2: 0 10px 28px rgba(7,17,31,.10);
+      --shadow3: 0 22px 90px rgba(7,17,31,.16);
+
+      --r1:18px;
+      --r2:28px;
+      --max:1200px;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(900px 520px at 12% -10%, rgba(59,130,246,.20), transparent 60%),
+        radial-gradient(900px 520px at 96% 0%, rgba(168,85,247,.16), transparent 60%),
+        radial-gradient(900px 520px at 82% 92%, rgba(33,196,93,.15), transparent 60%),
+        radial-gradient(900px 520px at 8% 92%, rgba(251,113,133,.12), transparent 60%),
+        linear-gradient(180deg, var(--bgA), var(--bgB) 55%, #f6fffb 100%);
+      overflow-x:hidden;
+    }
+
+    a{color:inherit;text-decoration:none}
+    .wrap{max-width:var(--max); margin:0 auto; padding: 18px 16px 86px;}
+    .glass{
+      background: var(--glass);
+      border: 1px solid var(--stroke);
+      box-shadow: var(--shadow);
+      border-radius: var(--r2);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+    .muted{color: var(--muted);}
+    .mono{font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;}
+
+    /* ---------- Floating blobs ---------- */
+    .bg-blobs{
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow:hidden;
+      border-radius: var(--r2);
+    }
+    .blob{
+      position:absolute;
+      width: 560px; height: 560px;
+      border-radius: 999px;
+      filter: blur(75px);
+      opacity: .30;
+      animation: blobFloat 10s ease-in-out infinite;
+      transform: translate3d(0,0,0);
+    }
+    .blob.one{left: -240px; top: -240px; background: rgba(59,130,246,.55);}
+    .blob.two{right: -260px; top: 30px; background: rgba(168,85,247,.45); animation-delay:-2.6s;}
+    .blob.three{left: 10%; bottom: -360px; background: rgba(33,196,93,.45); animation-delay:-5s;}
+    .blob.four{right: 8%; bottom: -400px; background: rgba(251,113,133,.35); animation-delay:-7.2s;}
+    @keyframes blobFloat{
+      0%,100%{transform: translate3d(0,0,0) scale(1);}
+      50%{transform: translate3d(30px,-20px,0) scale(1.09);}
+    }
+
+    /* ---------- Topbar ---------- */
+    .topbar{position:relative; z-index:10;}
+    .nav{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:12px 14px; gap:10px;
+    }
+    .brand{
+      display:flex; align-items:center; gap:12px;
+      user-select:none;
+    }
+    .brandLogo{
+      height: 80px !important;
+      width: auto !important;
+      max-height: none !important;
+      filter: drop-shadow(0 14px 26px rgba(7,17,31,.12));
+    }
+    .navlinks{
+      display:flex; align-items:center; gap:10px;
+      flex-wrap:wrap; justify-content:flex-end;
+    }
+
+    .pill{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:10px 12px;
+      border-radius:999px;
+      border:1px solid var(--stroke);
+      background: rgba(255,255,255,.74);
+      box-shadow: var(--shadow2);
+      transition: transform .18s ease, box-shadow .18s ease, filter .18s ease;
+      white-space:nowrap;
+      font-weight:700;
+      font-size:13px;
+      position:relative;
+      overflow:hidden;
+    }
+    .pill:hover{transform: translateY(-1px); box-shadow: 0 18px 55px rgba(7,17,31,.14); filter: brightness(1.02);}
+
+    /* ---------- Buttons (colored) ---------- */
+    .btn{
+      border:0;
+      cursor:pointer;
+      font-weight:950;
+      padding:12px 14px;
+      border-radius:16px;
+      transition: transform .18s ease, filter .18s ease, box-shadow .18s ease;
+      display:inline-flex; align-items:center; gap:10px;
+      box-shadow: var(--shadow2);
+      white-space:nowrap;
+      font-size:14px;
+      font-family: Inter, sans-serif;
+      position:relative;
+      overflow:hidden;
+      transform: translateZ(0);
+    }
+    .btn:before{
+      content:"";
+      position:absolute;
+      inset:-60% -40%;
+      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,.42), transparent 60%);
+      transform: translateX(-40%);
+      opacity:.0;
+      transition: opacity .25s ease, transform .35s ease;
+      pointer-events:none;
+    }
+    .btn:hover:before{opacity:.85; transform: translateX(10%);}
+    .btn:hover{transform: translateY(-1px); filter: brightness(1.03); box-shadow: var(--shadow3);}
+    .btn:active{transform: translateY(0px) scale(.99);}
+
+    .btn-soft{
+      background: linear-gradient(180deg, rgba(255,255,255,.92), rgba(255,255,255,.72));
+      border:1px solid var(--stroke);
+      color:var(--ink);
+    }
+    .btn-primary{
+      color:#05121f;
+      background: linear-gradient(135deg, rgba(33,196,93,.98), rgba(59,130,246,.95));
+    }
+    .btn-warm{
+      color:#05121f;
+      background: linear-gradient(135deg, rgba(251,113,133,.92), rgba(245,158,11,.92));
+    }
+    .btn-blue{
+      color:#fff;
+      background: linear-gradient(135deg, rgba(59,130,246,.98), rgba(168,85,247,.92));
+    }
+    .btn-wa{
+      color:#041019;
+      background: linear-gradient(135deg, rgba(37,211,102,.95), rgba(33,196,93,.90));
+    }
+
+    /* Ripple click */
+    .ripple{
+      position:absolute;
+      border-radius:999px;
+      transform: scale(0);
+      animation: ripple .55s ease-out;
+      background: rgba(255,255,255,.65);
+      pointer-events:none;
+      mix-blend-mode: overlay;
+    }
+    @keyframes ripple{ to{transform: scale(1); opacity:0;} }
+
+    /* ---------- Hero ---------- */
+    .hero{
+      margin-top: 16px;
+      padding: 18px;
+      border-radius: var(--r2);
+      border: 1px solid var(--stroke);
+      background:
+        radial-gradient(900px 420px at 20% 10%, rgba(59,130,246,.15), transparent 62%),
+        radial-gradient(700px 380px at 82% 25%, rgba(168,85,247,.13), transparent 60%),
+        radial-gradient(680px 360px at 60% 92%, rgba(33,196,93,.13), transparent 60%),
+        linear-gradient(180deg, rgba(255,255,255,.88), rgba(255,255,255,.62));
+      box-shadow: var(--shadow);
+      position:relative;
+      overflow:hidden;
+    }
+    .hero-grid{
+      position:relative;
+      display:grid;
+      grid-template-columns: 1.12fr .88fr;
+      gap: 16px;
+      align-items: stretch;
+      z-index:2;
+    }
+    .kicker{
+      display:inline-flex; align-items:center; gap:10px;
+      padding:10px 12px;
+      border-radius:999px;
+      border:1px solid var(--stroke);
+      background: rgba(255,255,255,.74);
+      width: fit-content;
+      box-shadow: var(--shadow2);
+      font-weight:800;
+      font-size:13px;
+    }
+    .kickerDot{
+      width:10px; height:10px; border-radius:999px;
+      background: conic-gradient(from 0deg, var(--b), var(--g), var(--p), var(--r), var(--b));
+      box-shadow: 0 10px 20px rgba(59,130,246,.18);
+    }
+    h1{
+      margin: 14px 0 10px;
+      font-family:"Space Grotesk", system-ui, sans-serif;
+      font-weight:700;
+      letter-spacing:-0.9px;
+      line-height:1.02;
+      font-size: clamp(36px, 4.9vw, 64px);
+    }
+    .spark{
+      background: linear-gradient(90deg, rgba(33,196,93,.12), rgba(59,130,246,.12));
+      border-radius:16px;
+      padding:0 10px 4px;
+      box-shadow: inset 0 0 0 1px rgba(7,17,31,.06);
+    }
+    .lead{
+      font-size:16.3px;
+      line-height:1.7;
+      color: var(--muted);
+      max-width:66ch;
+      margin:0;
+    }
+    .cta-row{
+      margin-top:16px;
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+
+    /* App cards */
+    .stats{
+      margin-top:14px;
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap:12px;
+    }
+    .stat{
+      border:1px solid var(--stroke);
+      background: rgba(255,255,255,.78);
+      border-radius:18px;
+      box-shadow: var(--shadow2);
+      padding:12px;
+      position:relative;
+      overflow:hidden;
+    }
+    .stat:after{
+      content:"";
+      position:absolute;
+      width:240px; height:240px;
+      border-radius:999px;
+      right:-150px; top:-150px;
+      opacity:.20;
+      background: radial-gradient(circle at 30% 30%, rgba(59,130,246,.55), transparent 62%);
+      pointer-events:none;
+    }
+    .stat .k{font-size:12px; color: var(--muted); font-weight:900;}
+    .stat .v{margin-top:6px; font-size:18px; font-weight:950; letter-spacing:-0.2px;}
+    .stat .ctaMini{margin-top:10px; display:flex; gap:8px; flex-wrap:wrap;}
+    .miniBtn{
+      display:inline-flex; align-items:center; justify-content:center;
+      padding:10px 10px;
+      border-radius:14px;
+      border:1px solid var(--stroke);
+      background: rgba(255,255,255,.82);
+      box-shadow: 0 10px 25px rgba(7,17,31,.08);
+      font-weight:950;
+      font-size:13px;
+      transition: transform .18s ease, box-shadow .18s ease;
+      cursor:pointer;
+    }
+    .miniBtn:hover{transform: translateY(-1px); box-shadow: 0 16px 40px rgba(7,17,31,.12);}
+
+    /* Visual card */
+    .visual{
+      position:relative;
+      border-radius: var(--r2);
+      border:1px solid var(--stroke);
+      background:
+        radial-gradient(620px 320px at 30% 20%, rgba(59,130,246,.18), transparent 60%),
+        radial-gradient(620px 320px at 70% 30%, rgba(168,85,247,.14), transparent 60%),
+        radial-gradient(620px 320px at 50% 80%, rgba(33,196,93,.14), transparent 60%),
+        linear-gradient(180deg, rgba(255,255,255,.88), rgba(255,255,255,.62));
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      padding:14px;
+      min-height:450px;
+    }
+    .visual-top{display:flex; align-items:center; justify-content:space-between; gap:10px; position:relative; z-index:2;}
+    .tag{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:9px 10px;
+      border-radius:999px;
+      border:1px solid var(--stroke);
+      background: rgba(255,255,255,.80);
+      box-shadow: var(--shadow2);
+      font-size:12px;
+      font-weight:950;
+      white-space:nowrap;
+    }
+
+    /* Sketch styles */
+    .sketch path, .sketch line, .sketch circle{
+      stroke: rgba(7,17,31,.76);
+      stroke-width: 2.2;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .sketch .accent{stroke: url(#grad); stroke-width: 3.4;}
+    .sketch .fillsoft{fill: rgba(255,255,255,.55); stroke: rgba(7,17,31,.16);}
+    .sketch .fillg{fill: rgba(33,196,93,.14); stroke: rgba(33,196,93,.34);}
+    .sketch .fillr{fill: rgba(251,113,133,.12); stroke: rgba(251,113,133,.30);}
+
+    .haz1{animation: blink 1s linear infinite;}
+    .haz2{animation: blink 1s linear infinite; animation-delay:.5s;}
+    @keyframes blink{0%,45%{opacity:.20}55%,100%{opacity:1}}
+
+    .carWrap{animation: drive 3.6s ease-in-out infinite;}
+    @keyframes drive{0%,100%{transform: translateX(0)}50%{transform: translateX(12px)}}
+    .wheel{transform-origin:center; animation: spin 1.1s linear infinite;}
+    @keyframes spin{to{transform: rotate(360deg)}}
+
+    /* Sections + background shade per section */
+    .section{
+      margin-top:18px;
+      padding:18px;
+      position:relative;
+      overflow:hidden;
+    }
+    .section::before{
+      content:"";
+      position:absolute;
+      inset:-2px;
+      opacity:.75;
+      pointer-events:none;
+      background:
+        radial-gradient(680px 340px at 18% 8%, rgba(59,130,246,.12), transparent 62%),
+        radial-gradient(680px 340px at 86% 22%, rgba(168,85,247,.10), transparent 62%),
+        radial-gradient(680px 340px at 52% 98%, rgba(33,196,93,.10), transparent 62%),
+        linear-gradient(180deg, rgba(255,255,255,.78), rgba(255,255,255,.58));
+    }
+    .section > *{ position:relative; z-index:1; }
+
+    .section h2{
+      margin:0 0 10px;
+      font-family:"Space Grotesk", system-ui, sans-serif;
+      font-size:30px;
+      letter-spacing:-0.45px;
+    }
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(12, minmax(0,1fr));
+      gap:12px;
+      margin-top:12px;
+    }
+    .card{
+      border:1px solid var(--stroke);
+      background: rgba(255,255,255,.80);
+      border-radius:18px;
+      padding:14px;
+      box-shadow: var(--shadow2);
+      position:relative;
+      overflow:hidden;
+    }
+    .card::after{
+      content:"";
+      position:absolute;
+      width:240px;height:240px;
+      border-radius:999px;
+      opacity:.16;
+      right:-130px; top:-130px;
+      background: radial-gradient(circle at 30% 30%, rgba(59,130,246,.55), transparent 62%);
+      pointer-events:none;
+    }
+    .chip{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:9px 10px;
+      border-radius:14px;
+      border:1px solid var(--stroke);
+      background: rgba(255,255,255,.78);
+      font-size:13px;
+      font-weight:950;
+      box-shadow: 0 10px 25px rgba(7,17,31,.08);
+    }
+    .card h3{margin:8px 0 6px; font-size:16px;}
+    .card p{margin:0; color:var(--muted); line-height:1.65; font-size:14px;}
+    .span-4{grid-column: span 4;}
+    .span-6{grid-column: span 6;}
+    .span-12{grid-column: span 12;}
+
+    /* Policies accordion */
+    .accordion{display:grid; gap:10px; margin-top:12px;}
+    details{
+      border:1px solid var(--stroke);
+      background: rgba(255,255,255,.80);
+      border-radius:18px;
+      box-shadow: var(--shadow2);
+      padding: 0;
+      overflow:hidden;
+    }
+    summary{
+      list-style:none;
+      cursor:pointer;
+      padding: 14px;
+      font-weight: 950;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+    }
+    summary::-webkit-details-marker{display:none;}
+    .summaryRight{color: var(--muted); font-weight: 900; font-size: 12px;}
+    .panel{padding: 0 14px 14px; color: var(--muted); line-height:1.75; font-size: 14px;}
+    .panel ul{margin: 8px 0 0 18px;}
+    .panel li{margin: 6px 0;}
+    .panel b{color: rgba(7,17,31,.92);}
+
+    /* Form */
+    .form{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:10px;
+      margin-top:12px;
+    }
+    .field{display:grid; gap:6px;}
+    label{font-size:12px; color: rgba(7,17,31,.78); font-weight:950;}
+    input, select, textarea{
+      width:100%;
+      padding:12px 12px;
+      border-radius:14px;
+      border:1px solid rgba(7,17,31,.14);
+      background: rgba(255,255,255,.92);
+      outline:none;
+      font-family: inherit;
+      font-size:14px;
+      box-shadow: 0 10px 25px rgba(7,17,31,.06);
+    }
+    textarea{min-height:108px; resize:vertical;}
+    .span-all{grid-column: 1 / -1;}
+
+    /* Footer (new) */
+    .footer{
+      margin-top:18px;
+      padding:18px;
+      position:relative;
+      overflow:hidden;
+    }
+    .footer::before{
+      content:"";
+      position:absolute;
+      inset:-2px;
+      opacity:.90;
+      pointer-events:none;
+      background:
+        radial-gradient(780px 360px at 10% 10%, rgba(59,130,246,.16), transparent 62%),
+        radial-gradient(720px 360px at 90% 20%, rgba(168,85,247,.14), transparent 62%),
+        radial-gradient(720px 360px at 60% 110%, rgba(33,196,93,.12), transparent 62%),
+        linear-gradient(180deg, rgba(255,255,255,.80), rgba(255,255,255,.62));
+    }
+    .footer > *{ position:relative; z-index:1; }
+    .footerGrid{
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap:12px;
+      align-items:start;
+    }
+    .footTitle{
+      font-family:"Space Grotesk", system-ui, sans-serif;
+      margin:0;
+      font-size:22px;
+      letter-spacing:-.3px;
+    }
+    .footLinks{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+      align-items:center;
+    }
+    .footRow{
+      margin-top:12px;
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
+      align-items:center;
+      padding-top:12px;
+      border-top:1px solid rgba(7,17,31,.10);
+      color: rgba(7,17,31,.68);
+      font-weight:800;
+      font-size:12px;
+    }
+    .linkBtn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:10px 12px;
+      border-radius:14px;
+      border:1px solid rgba(7,17,31,.12);
+      background: rgba(255,255,255,.80);
+      box-shadow: 0 10px 25px rgba(7,17,31,.08);
+      font-weight:950;
+      font-size:13px;
+      transition: transform .18s ease, box-shadow .18s ease;
+    }
+    .linkBtn:hover{transform: translateY(-1px); box-shadow: 0 18px 45px rgba(7,17,31,.12);}
+
+    /* Toast */
+    .toast{
+      position: fixed;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: 18px;
+      background: rgba(7,17,31,.92);
+      color: #fff;
+      padding: 10px 12px;
+      border-radius: 14px;
+      font-size: 13px;
+      box-shadow: 0 18px 60px rgba(7,17,31,.20);
+      opacity: 0;
+      pointer-events:none;
+      transition: opacity .25s ease, transform .25s ease;
+      z-index: 200;
+    }
+    .toast.show{opacity:1; transform: translateX(-50%) translateY(-6px);}
+
+    /* Reveal on scroll */
+    .reveal{opacity:0; transform: translateY(14px) scale(.99); transition: opacity .7s ease, transform .7s ease;}
+    .reveal.on{opacity:1; transform: translateY(0) scale(1);}
+
+    @media (max-width: 980px){
+      .hero-grid{grid-template-columns: 1fr;}
+      .visual{min-height: 420px;}
+      .span-4,.span-6{grid-column: span 12;}
+      .stats{grid-template-columns: 1fr;}
+      .form{grid-template-columns: 1fr;}
+      .navlinks{gap:8px}
+      .brandLogo{height:90px !important;}
+      .footerGrid{grid-template-columns:1fr;}
+      .footLinks{justify-content:flex-start;}
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+
+    <!-- TOPBAR -->
+    <div class="topbar glass reveal">
+      <div class="nav">
+        <a class="brand" href="#top" aria-label="Roadbays Home">
+          <img class="brandLogo" alt="Roadbays"
+               src="https://pl9fzpscv3smuetg.public.blob.vercel-storage.com/logo%20R%20%281%29.png" />
+        </a>
+
+        <div class="navlinks">
+          <a class="pill" href="#services">Services</a>
+          <a class="pill" href="#plans">Plans</a>
+          <a class="pill" href="#how">How it works</a>
+          <a class="pill" href="#policies">Policies</a>
+          <a class="pill" href="#about">About</a>
+          <a class="btn btn-blue" data-ripple href="#how">✨ Get Help</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- HERO -->
+    <section class="hero reveal" id="top" aria-label="Roadbays Hero">
+      <div class="bg-blobs" aria-hidden="true">
+        <div class="blob one"></div>
+        <div class="blob two"></div>
+        <div class="blob three"></div>
+        <div class="blob four"></div>
+      </div>
+
+      <div class="hero-grid">
+        <div>
+          <div class="kicker">
+            <span class="kickerDot"></span>
+            <span class="muted"><b class="mono">24/7</b> support • Fast dispatch • Clear updates</span>
+          </div>
+
+          <h1>
+            Stuck on the road?<br />
+            <span class="spark">Roadbays brings help.</span>
+          </h1>
+
+          <p class="lead">
+            Tyre puncture, towing, jumpstart, fuel delivery, or quick on-spot repair—
+            a clean dispatch workflow with premium support.
+          </p>
+
+          <div class="cta-row">
+            <a class="btn btn-primary" href="#plans" data-ripple>⚡ View Plans</a>
+            <a class="btn btn-soft"
+               data-ripple
+               href="https://forms.zohopublic.in/roadbays/form/ROADBAYSRSACARDACTIVATIONFORM/formperma/7S_YwG-OVm2hVr9vNd5bFMgq7e2kNrOWMhTA6xYUfXQ"
+               target="_blank" rel="noopener">
+              ✅ Activate RSA Card
+            </a>
+            <!-- Removed WhatsApp button from here as requested -->
+          </div>
+
+          <div class="stats" aria-label="Quick stats">
+            <div class="stat">
+              <div class="k">Helpline</div>
+              <div class="v">02269719432</div>
+              <div class="muted" style="margin-top:6px;font-size:13px;"><b>Alternate:</b> 9523633918</div>
+              <div class="ctaMini">
+                <a class="miniBtn" href="tel:02269719432" data-ripple>📞 Call 1</a>
+                <a class="miniBtn" href="tel:9523633918" data-ripple>📞 Call 2</a>
+              </div>
+            </div>
+
+            <div class="stat">
+              <div class="k">WhatsApp</div>
+              <div class="v">9523633918</div>
+              <div class="ctaMini">
+                <a class="miniBtn" id="waMini" href="#" data-ripple>💬 Chat Now</a>
+              </div>
+            </div>
+
+            <div class="stat">
+              <div class="k">Email</div>
+              <div class="v">support@roadbays.in</div>
+              <div class="ctaMini">
+                <a class="miniBtn" href="mailto:support@roadbays.in?subject=Roadbays%20Support%20Request" data-ripple>✉️ Email</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- VISUAL + ANIMATED SKETCH -->
+        <div class="visual">
+          <div class="visual-top">
+            <div class="tag">🟢 LIVE dispatch</div>
+            <div class="tag">⚡ Premium support</div>
+          </div>
+
+          <svg class="sketch" viewBox="0 0 520 360" width="100%" height="100%" style="margin-top:8px;">
+            <defs>
+              <linearGradient id="grad" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#21c45d"/>
+                <stop offset="1" stop-color="#3b82f6"/>
+              </linearGradient>
+            </defs>
+
+            <path d="M65 70c10-16 30-16 40 0c14-8 30 6 24 20H52c-10-10 0-26 13-20Z" class="fillsoft"/>
+            <path d="M360 64c10-16 30-16 40 0c14-8 30 6 24 20h-77c-10-10 0-26 13-20Z" class="fillsoft"/>
+            <circle cx="455" cy="35" r="16" class="fillr"/>
+
+            <path d="M40 285 C160 230, 350 230, 480 285" opacity=".85"/>
+            <path class="accent" d="M120 280 C210 255, 310 255, 400 280" opacity=".85"/>
+            <path d="M170 278 l18-8 l18 8 l18-8 l18 8 l18-8 l18 8 l18-8 l18 8" opacity=".55"/>
+
+            <g class="carWrap">
+              <path d="M48 220 L150 220 L150 290 L48 290 Z" class="fillg"/>
+              <path d="M70 205 L128 205 L150 220 L48 220 Z" opacity=".7"/>
+              <circle class="wheel" cx="78" cy="290" r="14" class="fillsoft"/>
+              <circle class="wheel" cx="125" cy="290" r="14" class="fillsoft"/>
+              <path class="accent" d="M62 255 H138" opacity=".9"/>
+              <circle class="haz1" cx="60" cy="236" r="6" fill="#f59e0b" stroke="rgba(7,17,31,.12)"/>
+              <circle class="haz2" cx="138" cy="236" r="6" fill="#f59e0b" stroke="rgba(7,17,31,.12)"/>
+            </g>
+
+            <path d="M175 235 C200 205, 290 205, 315 235 L335 240 C345 242, 353 252, 351 262 L347 282
+                     C345 295, 337 304, 323 304 L171 304 C157 304, 149 295, 147 282 L143 262
+                     C141 252, 149 242, 159 240 Z" class="fillsoft"/>
+            <path d="M200 235 L225 214 L285 214 L310 235" opacity=".75"/>
+            <circle cx="195" cy="304" r="18" class="fillsoft"/>
+            <circle cx="315" cy="304" r="18" class="fillsoft"/>
+
+            <path class="accent haz1" d="M250 175 L228 212 L272 212 Z"/>
+            <path class="haz2" d="M250 188v12" />
+            <circle class="haz2" cx="250" cy="206" r="2.3" />
+          </svg>
+
+          <div style="margin-top:10px; display:grid; gap:10px;">
+            <div class="card" style="padding:12px;">
+              <div class="chip">📍 Location-based dispatch</div>
+              <p style="margin-top:6px;">Nearest partner assigned + quick coordination via call, WhatsApp & email support.</p>
+            </div>
+            <div class="card" style="padding:12px;">
+              <div class="chip">🧰 On-spot fix first</div>
+              <p style="margin-top:6px;">We attempt quick fixes before towing (saves time and cost).</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section id="services" class="section glass reveal">
+      <h2>Services</h2>
+      <p class="muted" style="margin:0; line-height:1.65;">Practical help for real breakdown situations.</p>
+
+      <div class="grid">
+        <div class="card span-4">
+          <div class="chip">🛞 Tyre puncture</div>
+          <h3>Puncture repair / spare fitment</h3>
+          <p>Quick assistance without hunting for shops.</p>
+        </div>
+
+        <div class="card span-4">
+          <div class="chip">🔋 Battery</div>
+          <h3>Jumpstart & basic checks</h3>
+          <p>Dead battery? We arrange jumpstart and basic troubleshooting.</p>
+        </div>
+
+        <div class="card span-4">
+          <div class="chip">🛻 Towing</div>
+          <h3>Breakdown towing & recovery</h3>
+          <p>Safe towing with reliable partner network.</p>
+        </div>
+
+        <div class="card span-6">
+          <div class="chip">⛽ Fuel</div>
+          <h3>Emergency fuel delivery</h3>
+          <p>
+            Fuel delivery may not always be feasible due to safety concerns and/or applicable
+            government/agency regulations.
+          </p>
+        </div>
+
+        <div class="card span-6">
+          <div class="chip">🧰 Repair</div>
+          <h3>Minor repairs & troubleshooting</h3>
+          <p>For common issues, we try to resolve on-site first.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOW -->
+    <section id="how" class="section glass reveal">
+      <h2>How it works</h2>
+
+      <div class="grid">
+        <div class="card span-4">
+          <div class="chip">1️⃣ Request</div>
+          <h3>Call / WhatsApp / Email</h3>
+          <p>Share location + vehicle details. We log your request immediately.</p>
+        </div>
+
+        <div class="card span-4">
+          <div class="chip">2️⃣ Dispatch</div>
+          <h3>Nearest partner assigned</h3>
+          <p>We match you with the closest available provider.</p>
+        </div>
+
+        <div class="card span-4">
+          <div class="chip">3️⃣ Resolve</div>
+          <h3>Fix / Tow / Support</h3>
+          <p>Quick fix first. If needed, towing is arranged.</p>
+        </div>
+
+        <div class="card span-12">
+          <div class="chip">✅ RSA Card Activation</div>
+          <h3>Activate your RSA card before using plan benefits</h3>
+          <p style="margin-top:6px;">
+            <a class="btn btn-soft" data-ripple
+               style="display:inline-flex;"
+               target="_blank" rel="noopener"
+               href="https://forms.zohopublic.in/roadbays/form/ROADBAYSRSACARDACTIVATIONFORM/formperma/7S_YwG-OVm2hVr9vNd5bFMgq7e2kNrOWMhTA6xYUfXQ">
+              Open activation form
+            </a>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- PLANS -->
+    <section id="plans" class="section glass reveal">
+      <h2>Plans</h2>
+      <p class="muted" style="margin:0; line-height:1.65;">
+        Prices are <b>excluding GST</b>. No plan? You can still request services on a pay-per-use basis (typically higher cost).
+      </p>
+
+      <div class="grid">
+        <div class="card span-6">
+          <div class="chip">🚗 Plan 1</div>
+          <h3>₹1650 • 12 months</h3>
+          <p style="margin-top:8px;">2 free service requests • All core services included</p>
+
+          <div class="card" style="margin-top:12px; padding:12px;">
+            <div class="chip">🤝 Goodwill Extension (Up to 10 Years)</div>
+            <p style="margin-top:6px;">
+              If you do not request any assistance during the plan validity, Roadbays may, as a goodwill gesture and to maintain
+              transparent long-term customer relationships, keep your membership active in our system for up to <b>10 years</b>
+              after the subscription end date.
+              <br><br>
+              <b>Important:</b> This extension is purely a discretionary goodwill support and <b>is not a contractual right</b> or
+              legally enforceable entitlement. Any assistance during this period remains subject to feasibility, eligibility,
+              serviceability, and program conditions.
+            </p>
+          </div>
+
+          <div style="margin-top:14px; display:flex; gap:10px; flex-wrap:wrap;">
+            <a class="btn btn-primary" data-ripple href="#contact">🧾 Buy / Enquire</a>
+            <a class="btn btn-wa" data-ripple id="plan1Wa" href="#">💬 WhatsApp</a>
+          </div>
+        </div>
+
+        <div class="card span-6">
+          <div class="chip">🏁 Plan 2</div>
+          <h3>₹3300 • 30 months</h3>
+          <p style="margin-top:8px;">6 free service requests • Best value for frequent drivers</p>
+
+          <div class="card" style="margin-top:12px; padding:12px;">
+            <div class="chip">🤝 Goodwill Extension (Up to 10 Years)</div>
+            <p style="margin-top:6px;">
+              If you do not request any assistance during the plan validity, Roadbays may, as a goodwill gesture and to maintain
+              transparent long-term customer relationships, keep your membership active in our system for up to <b>10 years</b>
+              after the subscription end date.
+              <br><br>
+              <b>Important:</b> This extension is purely a discretionary goodwill support and <b>is not a contractual right</b> or
+              legally enforceable entitlement. Any assistance during this period remains subject to feasibility, eligibility,
+              serviceability, and program conditions.
+            </p>
+          </div>
+
+          <div style="margin-top:14px; display:flex; gap:10px; flex-wrap:wrap;">
+            <a class="btn btn-primary" data-ripple href="#contact">🧾 Buy / Enquire</a>
+            <a class="btn btn-wa" data-ripple id="plan2Wa" href="#">💬 WhatsApp</a>
+          </div>
+        </div>
+
+        <div class="card span-12">
+          <div class="chip">💡 Pay-per-use</div>
+          <h3>Need help without membership?</h3>
+          <p>Roadbays supports pay-per-use requests too. Plan benefits are subject to feasibility, external factors, and exclusions.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- POLICIES -->
+    <section id="policies" class="section glass reveal">
+      <h2>Terms, Privacy & Exclusions</h2>
+      <p class="muted" style="margin:0; line-height:1.65;">
+        Important: Roadbays arranges/refers roadside assistance subject to feasibility, accessibility, external factors, and program conditions.
+      </p>
+
+      <div class="accordion">
+        <details>
+          <summary>
+            Terms & Conditions (Program Summary)
+            <span class="summaryRight">tap to open</span>
+          </summary>
+          <div class="panel">
+            <p><b>Service nature.</b> Roadbays provides referral and/or arrangement-based roadside assistance, subject to feasibility, accessibility, traffic, weather and other factors beyond the company’s control.</p>
+            <p><b>Chargeable items.</b> Consumables, parts, penalties/fines, tolls, fuel costs, special salvage/extraction charges and any other third-party or chargeable expenses are payable by the customer.</p>
+            <p><b>External factors & delays.</b> Response time may be impacted by traffic, location accessibility and other external conditions. If the vehicle is in a ditch/valley/inaccessible area, special salvage equipment may be arranged on chargeable basis; the program is not responsible for consequential damage during such extraction.</p>
+            <p><b>Adverse weather.</b> In floods/heavy rain/thunder etc., primary focus is passenger safety; vehicle recovery may be delayed until conditions permit.</p>
+            <p><b>Right to refusal.</b> Roadbays may refuse benefits (without refund) if false/incorrect information is provided or eligibility conditions are not met. Membership is not valid for commercial/rental/business/industrial/educational use. Membership is non-transferable and valid in India (except islands).</p>
+            <p><b>Liability.</b> Roadbays is not liable for indirect losses, loss of data/income, or consequential loss due to defects or repair/replacement processes.</p>
+            <p><b>Cancellation.</b> “No questions asked” cancellation may be available within 7 days of purchase only if no service/benefit has been availed up to the cancellation request date.</p>
+            <p><b>Accidental cases.</b> Where police/FIR/court possession exists, assistance can be activated only after clearance/release and proper handover.</p>
+            <p><b>Disputes.</b> Courts within New Delhi jurisdiction shall have exclusive jurisdiction.</p>
+          </div>
+        </details>
+
+        <details>
+          <summary>
+            Non-Covered Events (Examples)
+            <span class="summaryRight">tap to open</span>
+          </summary>
+          <div class="panel">
+            <p>Roadside Assistance does not cover certain non-safety or convenience issues and routine maintenance pickup/drop. Examples include:</p>
+            <ul>
+              <li>Faulty fuel gauge, speedometer not working</li>
+              <li>Air-conditioning not working</li>
+              <li>Damaged mirrors where vision is not obstructed</li>
+              <li>Sunroof/windows issues when weather is fair and there is no security risk</li>
+              <li>ABS/airbag/traction-control or other non-safety warning lights illuminated</li>
+              <li>Seat adjustor fault where vehicle can be safely driven</li>
+              <li>Wiper fault when weather is fair</li>
+              <li>Vehicle pick-up and drop for routine maintenance is not included</li>
+            </ul>
+          </div>
+        </details>
+
+        <details>
+          <summary>
+            Special Exclusions
+            <span class="summaryRight">tap to open</span>
+          </summary>
+          <div class="panel">
+            <ul>
+              <li>Motor racing, rallies, speed/duration tests, practice runs, or operation outside official roads</li>
+              <li>War/riots/uprising/terrorism, mass political events; nuclear/radiation events; earthquakes/freak weather phenomena</li>
+              <li>Deliberate damage, vandalism, or participation in a criminal act/offence</li>
+              <li>Immobilization caused by police/authority intervention</li>
+              <li>Use against owner manual recommendations; non-roadworthy condition; improper servicing</li>
+              <li>Consequential costs/damage to property due to breakdown</li>
+            </ul>
+          </div>
+        </details>
+
+        <details>
+          <summary>
+            Privacy Policy & Customer Consents
+            <span class="summaryRight">tap to open</span>
+          </summary>
+          <div class="panel">
+            <p><b>Confidentiality.</b> Roadbays makes reasonable efforts to keep customer personal information confidential and uses it for service fulfillment.</p>
+            <p><b>Sharing with service partners.</b> Information may be shared with contracted vendors/service partners strictly to deliver services or if required by law.</p>
+            <p><b>Call recording.</b> Calls to/from helpline numbers may be recorded to keep a record of instructions, coordinate with partners, monitor quality, training, and legal/regulatory requirements.</p>
+            <p><b>Communications.</b> You may receive SMS/email communications regarding services/product features. You may request opt-out where applicable.</p>
+            <p><b>Customer representations.</b> Customer confirms age 18+, resident of India, and that information provided is true, correct and complete.</p>
+          </div>
+        </details>
+
+        <details>
+          <summary>
+            Customer Declaration (Activation)
+            <span class="summaryRight">tap to open</span>
+          </summary>
+          <div class="panel">
+            <p>
+              By activating the Roadbays RSA Card and/or using Roadbays services, the customer confirms they have read, understood,
+              and accepted the program terms, inclusions, exclusions, limitations, special conditions and policies; and consents to
+              collection, use, storage and sharing of personal data for service fulfillment, quality monitoring, training and legal/regulatory requirements.
+            </p>
+            <p>
+              The customer also acknowledges that certain events are not covered and that chargeable items (consumables/penalties/tolls/fuel/salvage etc.)
+              shall be borne by the customer.
+            </p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- CONTACT (kept as section, nav link removed earlier) -->
+    <section id="contact" class="section glass reveal">
+      <h2>Contact Roadbays</h2>
+      <p class="muted" style="margin:0; line-height:1.65;">
+        For urgent help, call the helpline. For quick chat, WhatsApp us. For documents/activation issues, email support.
+      </p>
+
+      <div class="grid" style="margin-top:14px;">
+        <div class="card span-6">
+          <div class="chip">⚡ Quick Actions</div>
+          <h3>Call / WhatsApp / Email / Activate</h3>
+
+          <div style="margin-top:12px; display:flex; gap:10px; flex-wrap:wrap;">
+            <a class="btn btn-blue" data-ripple href="tel:02269719432">📞 Call: 02269719432</a>
+            <a class="btn btn-soft" data-ripple href="tel:9523633918">📞 Call: 9523633918</a>
+            <a class="btn btn-wa" data-ripple id="waQuick" href="#">💬 WhatsApp: 9523633918</a>
+            <a class="btn btn-soft" data-ripple href="mailto:support@roadbays.in?subject=Roadbays%20Support%20Request">✉️ Email: support@roadbays.in</a>
+            <a class="btn btn-warm" data-ripple
+               href="https://forms.zohopublic.in/roadbays/form/ROADBAYSRSACARDACTIVATIONFORM/formperma/7S_YwG-OVm2hVr9vNd5bFMgq7e2kNrOWMhTA6xYUfXQ"
+               target="_blank" rel="noopener">
+              ✅ Activate RSA Card
+            </a>
+          </div>
+        </div>
+
+        <div class="card span-6">
+          <div class="chip">🧾 Enquiry Form</div>
+          <h3>Send details (Email or WhatsApp)</h3>
+          <p>Choose the channel you prefer. Message will be auto-filled.</p>
+
+          <form class="form" id="enquiryForm">
+            <div class="field">
+              <label for="name">Name</label>
+              <input id="name" name="name" placeholder="Your name" required />
+            </div>
+            <div class="field">
+              <label for="phone">Phone</label>
+              <input id="phone" name="phone" placeholder="10-digit number" inputmode="numeric" required />
+            </div>
+            <div class="field span-all">
+              <label for="service">Need help with</label>
+              <select id="service" name="service">
+                <option>Tyre puncture</option>
+                <option>Battery jumpstart</option>
+                <option>Fuel delivery</option>
+                <option>Towing</option>
+                <option>On-spot repair</option>
+                <option>Plan purchase enquiry</option>
+                <option>Activation support</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="field span-all">
+              <label for="msg">Message</label>
+              <textarea id="msg" name="msg" placeholder="Share location / vehicle number / details"></textarea>
+            </div>
+
+            <div class="span-all" style="display:flex; gap:10px; flex-wrap:wrap;">
+              <button class="btn btn-blue" data-ripple type="submit">✉️ Send Email</button>
+              <button class="btn btn-wa" data-ripple type="button" id="sendWhatsApp">💬 Send WhatsApp</button>
+              <button class="btn btn-soft" data-ripple type="button" id="resetForm">↺ Reset</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER / ABOUT -->
+    <section id="about" class="footer glass reveal" aria-label="Footer About Roadbays">
+      <div class="footerGrid">
+        <div>
+          <h3 class="footTitle">About Roadbays</h3>
+          <p class="muted" style="margin:10px 0 0; line-height:1.75; font-weight:650; max-width: 80ch;">
+            Roadbays was built for one simple reason: <b>roadside emergencies shouldn’t feel chaotic</b>.
+            We focus on fast coordination, transparent communication and reliable partners so that drivers can get back on the road safely.
+          </p>
+          <p class="muted" style="margin:10px 0 0; line-height:1.75; font-weight:650; max-width: 80ch;">
+            <b>Mission:</b> Make roadside support simple, responsive and trustworthy across India — with clear expectations and safety-first decisions.
+          </p>
+        </div>
+
+      </div>
+
+      <div class="footRow">
+        <div>© <span id="yr"></span> Roadbays. All rights reserved.</div>
+        <div>Safety-first • Transparent policies • Partner-based dispatch</div>
+      </div>
+    </section>
+
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite">Done</div>
+
+  <script>
+    // Config
+    const WHATSAPP_NUMBER = "919523633918"; // +91 9523633918
+
+    // Year
+    document.getElementById("yr").textContent = new Date().getFullYear();
+
+    // Toast
+    const toast = document.getElementById("toast");
+    function showToast(text){
+      toast.textContent = text || "Done";
+      toast.classList.add("show");
+      clearTimeout(showToast._t);
+      showToast._t = setTimeout(()=> toast.classList.remove("show"), 1600);
+    }
+
+    // Helpers
+    function cleanPhone(p){ return (p || "").replace(/[^\d]/g,""); }
+    function buildMessage(){
+      const name = (document.getElementById("name")?.value || "").trim();
+      const phone = cleanPhone(document.getElementById("phone")?.value || "");
+      const service = (document.getElementById("service")?.value || "").trim();
+      const msg = (document.getElementById("msg")?.value || "").trim();
+
+      return `Hi Roadbays Support,%0A%0A`
+        + `I need help.%0A%0A`
+        + `Name: ${encodeURIComponent(name || "-")}%0A`
+        + `Phone: ${encodeURIComponent(phone || "-")}%0A`
+        + `Service: ${encodeURIComponent(service || "-")}%0A`
+        + `Details: ${encodeURIComponent(msg || "(share location / vehicle details)")}%0A%0A`
+        + `Regards,%0A${encodeURIComponent(name || "")}`;
+    }
+
+    function openWhatsApp(prefillText){
+      const text = prefillText || buildMessage();
+      const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${text}`;
+      window.open(url, "_blank", "noopener");
+    }
+
+    // WhatsApp buttons
+    document.getElementById("waMini")?.addEventListener("click", (e)=>{ e.preventDefault(); openWhatsApp(); });
+    document.getElementById("waQuick")?.addEventListener("click", (e)=>{ e.preventDefault(); openWhatsApp(); });
+    document.getElementById("waFooter")?.addEventListener("click", (e)=>{ e.preventDefault(); openWhatsApp(encodeURIComponent("Hi Roadbays, I need support. Please guide me.")); });
+
+    document.getElementById("plan1Wa")?.addEventListener("click", (e)=>{ e.preventDefault(); openWhatsApp(encodeURIComponent("Hi Roadbays, I want to buy Plan 1 (₹1650 / 12 months). Please guide me.")); });
+    document.getElementById("plan2Wa")?.addEventListener("click", (e)=>{ e.preventDefault(); openWhatsApp(encodeURIComponent("Hi Roadbays, I want to buy Plan 2 (₹3300 / 30 months). Please guide me.")); });
+
+    // Enquiry form -> Email
+    const form = document.getElementById("enquiryForm");
+    form?.addEventListener("submit", (e)=>{
+      e.preventDefault();
+      const name = (document.getElementById("name").value || "").trim();
+      const phone = cleanPhone(document.getElementById("phone").value || "");
+
+      if(phone.length < 10){
+        showToast("Enter a valid phone number");
+        return;
+      }
+
+      const service = (document.getElementById("service").value || "").trim();
+      const msg = (document.getElementById("msg").value || "").trim();
+
+      const body =
+`Hi Roadbays Support,
+
+I need help.
+
+Name: ${name}
+Phone: ${phone}
+Service: ${service}
+Details: ${msg || "(share location / vehicle details)"}
+
+Regards,
+${name}`;
+
+      const subject = "Roadbays Support Request";
+      const mailto = "mailto:support@roadbays.in"
+        + "?subject=" + encodeURIComponent(subject)
+        + "&body=" + encodeURIComponent(body);
+
+      window.location.href = mailto;
+      showToast("Opening Email…");
+    });
+
+    // Enquiry form -> WhatsApp
+    document.getElementById("sendWhatsApp")?.addEventListener("click", ()=>{
+      const phone = cleanPhone(document.getElementById("phone")?.value || "");
+      if(phone.length < 10){
+        showToast("Enter a valid phone number");
+        return;
+      }
+      openWhatsApp();
+      showToast("Opening WhatsApp…");
+    });
+
+    document.getElementById("resetForm")?.addEventListener("click", ()=>{
+      form?.reset();
+      showToast("Form cleared");
+    });
+
+    // Button ripple
+    function addRipple(e){
+      const el = e.currentTarget;
+      const rect = el.getBoundingClientRect();
+      const d = Math.max(rect.width, rect.height) * 1.25;
+      const r = document.createElement("span");
+      r.className = "ripple";
+      r.style.width = r.style.height = d + "px";
+      r.style.left = (e.clientX - rect.left - d/2) + "px";
+      r.style.top  = (e.clientY - rect.top  - d/2) + "px";
+      el.appendChild(r);
+      setTimeout(()=> r.remove(), 650);
+    }
+    document.querySelectorAll("[data-ripple]").forEach(el=>{
+      el.addEventListener("click", addRipple, {passive:true});
+    });
+
+    // Reveal on scroll
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(en=>{
+        if(en.isIntersecting) en.target.classList.add("on");
+      });
+    }, {threshold: 0.12});
+    document.querySelectorAll(".reveal").forEach(el=> io.observe(el));
+  </script>
+</body>
+</html>
